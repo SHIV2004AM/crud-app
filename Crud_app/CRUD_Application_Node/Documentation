@@ -1,0 +1,91 @@
+
+> User Management System Documentation
+> Project Structure
+The user management system is organized with a modular structure to enhance maintainability and scalability.
+
+app.js: Entry point of the application.
+config: Configuration files for the application.
+controllers: Handles the application logic.
+models: Defines data structures and interacts with the database.
+public: Contains static files such as stylesheets and client-side scripts.
+routes: Manages the application routes.
+views: Stores the EJS templates for rendering HTML.
+
+> HTTP Server
+The application uses Node.js with Express as the HTTP server to handle client requests and serve the appropriate responses.
+
+// app.js
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+Modules
+The system is divided into modules to encapsulate related functionality.
+
+userController.js: Manages CRUD operations for user data.
+db.js: Handles the connection to the MongoDB database.
+userRoutes.js: Defines routes for user-related operations.
+views: EJS templates for rendering HTML.
+Views
+EJS templates are used for rendering HTML dynamically.
+
+views/index.ejs: Displays the list of users.
+views/create.ejs: Form for creating a new user.
+views/edit.ejs: Form for editing an existing user.
+Main Section
+The main section of the application includes user management features such as viewing the user list, creating new users, updating existing users, and deleting users.
+
+Styling HTML
+The application uses CSS for styling HTML elements. Stylesheets are located in the public/css directory.
+
+Table & Form
+The user list is displayed in a table format in the views/index.ejs file. The user creation and editing forms are implemented using HTML forms in views/create.ejs and views/edit.ejs respectively.
+
+Styling Form
+Forms are styled using CSS to provide a user-friendly and visually appealing interface.
+
+EJS - Routes
+Express.js is used for routing, and EJS is employed for rendering dynamic HTML content in response to client requests.
+
+MongoDB
+MongoDB is used as the database to store user information. The connection to the database is managed by the db.js module.
+
+API
+The application provides a RESTful API for performing CRUD operations on user data.
+
+Create
+Route: /api/users/create
+Method: POST
+Description: Creates a new user.
+Find & Update
+Route: /api/users/:id
+Method: GET (Find), PUT (Update)
+Description: Finds and updates a user by ID.
+Delete
+Route: /api/users/:id
+Method: DELETE
+Description: Deletes a user by ID.
+Getting Single User
+Route: /api/users/:id
+Method: GET
+Description: Retrieves a single user by ID.
+Using API
+The API can be accessed using tools like cURL or by integrating it into other applications.
+
+Create New User
+curl -X POST -H "Content-Type: application/json" -d '{"username": "newuser", "email": "newuser@example.com"}' http://localhost:3000/api/users/create
+
+Update User
+curl -X PUT -H "Content-Type: application/json" -d '{"username": "updateduser"}' http://localhost:3000/api/users/:id
+
+Delete User
+curl -X DELETE http://localhost:3000/api/users/:id
+
+
+Getting Single User
+curl http://localhost:3000/api/users/:id
+
